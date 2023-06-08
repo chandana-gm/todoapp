@@ -1,0 +1,30 @@
+<!-- <div><app-dashboard></app-dashboard>
+<router-outlet></router-outlet>
+</div> -->
+
+
+
+    
+<nav class="d-flex">
+    <ul>
+      <ol>
+        <!-- <ng-container *ngIf="let "></ng-container> -->
+        <img src="assets/angular.png">
+      </ol>
+    </ul>
+    <ul class="nav">
+      <li><a routerLink="/task/dashboard/home"> home</a></li>
+      <li><a routerLink="/task/dashboard/addtask"> addtask</a></li>
+      <li><a routerLink="/task/dashboard/pendingtask"> pending task</a></li>
+      <li><a routerLink="/task/dashboard/cmplttask"> completed task</a></li>
+      <li><a (click)="logout()">logout</a></li>
+
+      <!-- <li><a href=""> Python</a></li> -->
+      
+      
+  
+    </ul>
+  </nav>
+   
+        <router-outlet></router-outlet>
+

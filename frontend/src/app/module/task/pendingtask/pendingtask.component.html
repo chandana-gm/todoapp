@@ -1,0 +1,125 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <div class="d-flex justify-content-center  align-items-baseline">
+        <div class="me-2 h4 text-danger">
+          <label for="priority ">
+            Filter :
+          </label>
+        </div>
+        <div>
+          <select [(ngModel)]='taskPriority' (change)="filterTask()" name="priority" id="priority" class="form-control"
+            style="width: 200px;">
+            <option value="high">High</option>
+            <option value="low">Low</option>
+            <option value="all">All</option>
+
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <table class="table table-striped-columns">
+        <thead>
+          <tr>
+            <th>Sl no:</th>
+            <th>date</th>
+            <th>task</th>
+            <th>description</th>
+            <th>priority</th>
+            <th>action</th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredList; let i = index">
+
+            <th scope="row">{{i+1}}</th>
+            <td>{{ item.date }}</td>
+            <td>{{ item.task }}</td>
+            <td>{{ item.description }}</td>
+
+
+            <td>{{ item.priority }}</td>
+
+            <td><i class="bi bi-pencil text-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
+                (click)="modalFunction(item,i, item.id)"></i>
+              <i class="bi bi-trash3 text-danger" (click)="deleteTask(item.id,i)"></i>
+
+              <i class="bi bi-check2 text-success" (click)="updateRow(item,i)"></i>
+            </td>
+
+
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" >
+          <!-- <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div> -->
+          <!-- <ng-container *ngFor="let items of modalArray; let i =index"></ng-container> -->
+
+          <div class="modal-body">
+            <form  #form="ngForm" (ngSubmit)="modalChange(form.value )">
+              <div class="mb-3">
+                <label for="name" class="form-label">Task</label>
+                <input type="text" ngModel  name="task" id="name" class="form-control"
+                  [(ngModel)]="modalTask">
+
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Description</label>
+                <textarea name="description" ngModel  id="" cols="30" class="form-control"
+                  rows="5" [(ngModel)]="modalDescription"></textarea>
+
+              </div>
+
+              <!-- <div class="mb-3">
+                <label for="phone" class="form-label">Priority</label>
+                <input type="text" ngModel #priority="ngModel" name="priority" id="name" class="form-control"
+                  [(ngModel)]="modalPriority">
+
+
+              </div> -->
+
+              <div class="mb-3">
+                <label for="phone" class="form-label">Priority</label>
+              <select name="priority" ngModel  required class="form-control" id="" [(ngModel)]="modalPriority">
+                <option value="high">high</option>
+                <option value="low">low</option>
+              </select>
+                
+            </div>
+
+              <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" >save</button>
+
+
+              <!-- <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Add Task</button> -->
+            </form>
+            <!-- <div class="modal-footer"> -->
+
+              <!-- <button type="button" class="btn btn-secondary">save</button> -->
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
